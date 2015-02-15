@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +29,9 @@ public class User implements Serializable {
 		PROJECT_MANAGER, DEVELOPER
 	}
 
-	@Id
+	@Id 
+	@GeneratedValue(generator = "UserGenerator", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(sequenceName = "user_id_seq", name = "UserGenerator")
 	private long id;
 	private String firstName;
 	private String lastName;

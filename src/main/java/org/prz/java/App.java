@@ -16,19 +16,18 @@ public class App
 {
 	
     @SuppressWarnings("deprecation")
-	public static void main( String[] args )
-	{
+	public static void main( String[] args ) {
     	
-    	addUser("dupa", "slonia");
+    	addUser("dupa2", "slonia2");
     }
     
     
-    public static void addUser(String name, String lastname ){
+    public static void addUser(String name, String lastname ) {
     	
     	Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
-        try{
+        try {
            tx = session.beginTransaction();
            
            User user = new User();
@@ -37,14 +36,12 @@ public class App
            session.save(user);
            
            tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
            if (tx!=null) tx.rollback();
            e.printStackTrace(); 
-        }finally {
+        } finally {
            session.close(); 
         }
-
-    	
     }
-
+    
 }

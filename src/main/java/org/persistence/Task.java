@@ -5,8 +5,11 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +27,8 @@ public class Task implements Serializable {
 	
 
 	@Id
+	@GeneratedValue(generator = "TaskGenerator", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(sequenceName = "task_id_seq", name = "TaskGenerator")
 	private long id;
 	@OneToMany
 	private Collection<Comment> comment;
